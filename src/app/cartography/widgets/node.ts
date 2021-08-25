@@ -32,6 +32,22 @@ export class NodeWidget implements Widget {
 
     const node_body_enter = node_body.enter().append<SVGGElement>('g').attr('class', 'node_body');
 
+    // node_body_enter.on('mouseover', function (this, n: MapNode) {
+    //   //select(this).attr('class', 'over');
+    //   if (self.selectionManager.isSelected(n)) return;
+    //   select(this.parentNode).append<SVGRectElement>('rect')
+    //     .attr('class', 'overrect')
+    //     .attr('width', '26')
+    //     .attr('height', '26')
+    //     .attr('x', n.x)
+    //     .attr('y', n.y)
+    //     .attr('fill', 'red');
+    // })
+    // .on('mouseout', function (this, n: MapNode) {
+    //   select(this.parentNode).select('.overrect').remove();
+    //   //select(this).attr('class', '');
+    // });
+
     node_body_enter.append<SVGImageElement>('image');
 
     const node_body_merge = node_body
@@ -105,8 +121,22 @@ export class NodeWidget implements Widget {
       })
       .on('mouseover', function (this, n: MapNode) {
         select(this).attr('class', 'over');
+        if (self.selectionManager.isSelected(n)) return;
+        // select(this.parentNode).append<SVGCircleElement>('circle')
+        //   .attr('class', 'overrect')
+        //   .attr('r', '10')
+        //   .attr('cx', n.width/2)
+        //   .attr('cy', n.height/2)
+        //   .attr('fill', 'red')
+        //   .attr('opacity', 0.5);
+        select(this.parentNode).append<SVGPathElement>('path')
+          .attr('fill', '#69b3a2')
+          .attr('transform', `translate(0, 0)`)
+          .attr('d', 'M0,149 A150,150,0,0,1,-0.47,-149.9 L-0.3,-99.9 A100,100,0,0,0,0.15,99.9Z')
+          .attr('scale', 0.1);
       })
       .on('mouseout', function (this, n: MapNode) {
+        select(this.parentNode).select('.overrect').remove();
         select(this).attr('class', '');
       });
 
