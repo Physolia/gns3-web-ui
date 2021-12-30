@@ -4,6 +4,8 @@ export type ServerProtocol = 'http:' | 'https:';
 
 export class Server {
   authToken: string;
+  username: string;
+  password: string;
   id: number;
   name: string;
   location: ServerLocation;
