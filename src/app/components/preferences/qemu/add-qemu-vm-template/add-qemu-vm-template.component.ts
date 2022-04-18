@@ -137,10 +137,10 @@ export class AddQemuVmTemplateComponent implements OnInit {
 
     const url = this.qemuService.getImagePath(this.server, name);
     this.uploader.queue.forEach((elem) => (elem.url = url));
-  
+
     const itemToUpload = this.uploader.queue[0];
-    
-    if ((itemToUpload as any).options) (itemToUpload as any).options.disableMultipart = true; ((itemToUpload as any).options.headers =[{name:'Authorization',value:'Bearer ' + this.server.authToken}]) 
+
+    if ((itemToUpload as any).options) (itemToUpload as any).options.disableMultipart = true; ((itemToUpload as any).options.headers =[{name:'Authorization',value:'Bearer ' + this.server.authToken}])
     this.uploader.uploadItem(itemToUpload);
 
   }
